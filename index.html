@@ -1,418 +1,573 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#080808">
-<title>OluEarn | Earn More</title>
-<style>
-:root{--gold:#e5b84b;--black:#080808;--panel:#171717;--muted:#b5b5b5}
-*{box-sizing:border-box}
-body{margin:0;background:var(--black);color:white;font-family:Arial,sans-serif;line-height:1.6}
-header{padding:22px 18px;border-bottom:1px solid #383020;background:#101010}
-.brand{font-size:28px;font-weight:900;color:var(--gold)}
-.brand span{color:white}
-.tagline,.muted{color:var(--muted);font-size:14px}
-nav{display:flex;gap:18px;overflow-x:auto;padding:14px 18px;background:#111}
-nav a{color:var(--gold);text-decoration:none;white-space:nowrap}
-main{max-width:850px;margin:auto;padding:18px}
-.hero{padding:28px 20px;background:linear-gradient(135deg,#252016,#101010 65%);border:1px solid #5d4920;border-radius:16px}
-h1{font-size:34px;line-height:1.2}
-h2{color:var(--gold);font-size:22px}
-.card{background:var(--panel);border:1px solid #343434;border-radius:12px;padding:17px;margin:12px 0}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px}
-.balance{font-size:31px;color:var(--gold);font-weight:bold}
-.gold{color:var(--gold)}
-.pill{font-size:11px;color:var(--gold);border:1px solid #75602d;padding:3px 8px;border-radius:20px}
-button,.button{background:var(--gold);color:#111;border:0;border-radius:8px;padding:12px 16px;font-weight:bold;cursor:pointer;display:inline-block;text-decoration:none}
-button:disabled{opacity:.6}
-.notice{background:#241d0d;border-left:4px solid var(--gold);padding:12px;font-size:13px;color:#f4e4bd;border-radius:4px}
-section{padding-top:14px;margin-bottom:28px}
-footer{border-top:1px solid #333;padding:24px;text-align:center;color:var(--muted);font-size:12px}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta name="description" content="OluEarn helps members discover surveys, simple tasks and sponsored offers.">
+  <title>OluEarn | Earn More From Your Spare Time</title>
+
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --panel: #151515;
+      --gold: #d8b34b;
+      --gold-light: #f4d77c;
+      --text: #f7f4ec;
+      --muted: #b8b4a9;
+      --line: #393226;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    button, input, select { font: inherit; }
+    button { cursor: pointer; }
+
+    a { color: var(--gold-light); }
+
+    .wrap {
+      width: min(1080px, 92%);
+      margin: auto;
+    }
+
+    header {
+      border-bottom: 1px solid var(--line);
+      padding: 18px 0;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      color: var(--gold);
+      font-size: 27px;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .brand span { color: white; }
+
+    .nav a {
+      text-decoration: none;
+      margin-left: 14px;
+      font-size: 14px;
+    }
+
+    .hero { padding: 52px 0 36px; }
+
+    .eyebrow {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    h1 {
+      font-size: clamp(34px, 6vw, 58px);
+      line-height: 1.1;
+      margin: 12px 0;
+    }
+
+    h2 { line-height: 1.25; }
+
+    .gold { color: var(--gold-light); }
+
+    .muted { color: var(--muted); }
+
+    .hero p {
+      max-width: 620px;
+      color: var(--muted);
+    }
+
+    .button {
+      border: 1px solid var(--gold);
+      background: var(--gold);
+      color: #111;
+      border-radius: 8px;
+      padding: 12px 17px;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: var(--gold-light);
+    }
+
+    .button:disabled {
+      opacity: .5;
+      cursor: not-allowed;
+    }
+
+    .section { padding: 26px 0; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 20px;
+      min-width: 0;
+    }
+
+    .card h3 { margin-top: 5px; }
+
+    .points {
+      color: var(--gold-light);
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .auth-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    label {
+      display: block;
+      margin: 12px 0 5px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      background: #090909;
+      border: 1px solid #554a31;
+      border-radius: 7px;
+      color: white;
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .message {
+      overflow-wrap: anywhere;
+      min-height: 24px;
+      color: var(--gold-light);
+    }
+
+    .notice {
+      border-left: 3px solid var(--gold);
+      background: #17140d;
+      padding: 12px 15px;
+      color: var(--muted);
+      border-radius: 5px;
+    }
+
+    .wallet-number {
+      font-size: 35px;
+      color: var(--gold-light);
+      font-weight: bold;
+    }
+
+    .hidden { display: none !important; }
+
+    footer {
+      margin-top: 35px;
+      border-top: 1px solid var(--line);
+      padding: 25px 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 700px) {
+      .grid, .auth-grid { grid-template-columns: 1fr; }
+      .hero { padding-top: 35px; }
+      .nav a { margin-left: 8px; }
+    }
+  </style>
 </head>
+
 <body>
 <header>
-  <div class="brand">Olu<span>Earn</span></div>
-  <div class="tagline">Earn more from your spare time.</div>
+  <div class="wrap nav">
+    <div class="brand">Olu<span>Earn</span></div>
+    <nav>
+      <a href="#how">How it works</a>
+      <a href="#earn">Earn</a>
+      <a href="#account">Account</a>
+    </nav>
+  </div>
 </header>
-<nav>
-  <a href="#home">Home</a><a href="#tasks">Tasks</a>
-  <a href="#referrals">Referrals</a><a href="#wallet">Wallet</a><a href="#about">About</a>
-</nav>
-<main>
-  <div class="notice">DEMO WEBSITE: Points are examples only, have no cash value, and cannot be withdrawn as real money.</div>
-  <section id="home">
-    <div class="hero">
-      <p class="gold">WELCOME TO OLEAR​N</p>
-      <h1>Turn your spare time into <span class="gold">opportunity.</span></h1>
-      <p class="muted">Explore sample surveys, simple tasks and referral rewards from your phone.</p>
-      <a class="button" href="#tasks">Explore demo tasks</a>
-    </div>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Your time. Your opportunities.</div>
+    <h1>Earn more from<br><span class="gold">your spare time.</span></h1>
+    <p>
+      Discover simple tasks, surveys, referrals and sponsored offers
+      in one place. Create an account to get started.
+    </p>
+    <a class="button" href="#account">Create your account</a>
+    <a class="button secondary" href="#earn">Explore tasks</a>
   </section>
-  <section>
-    <h2>Your demo dashboard</h2>
+
+  <div class="notice">
+    <strong>Demo mode:</strong> Task rewards and wallet points on this
+    page are examples only. They are not cash and cannot be withdrawn.
+  </div>
+
+  <section class="section" id="how">
+    <h2>How OluEarn works</h2>
     <div class="grid">
-      <div class="card"><div class="muted">Demo points</div><div class="balance" id="balance">0</div><div class="muted">No cash value</div></div>
-      <div class="card"><div class="muted">Tasks completed</div><div class="balance" id="completed">0</div><div class="muted">Demo activities</div></div>
+      <article class="card">
+        <div class="points">01</div>
+        <h3>Create an account</h3>
+        <p class="muted">Register with your email and verify it if requested.</p>
+      </article>
+      <article class="card">
+        <div class="points">02</div>
+        <h3>Discover opportunities</h3>
+        <p class="muted">Explore surveys, simple activities and sponsored offers.</p>
+      </article>
+      <article class="card">
+        <div class="points">03</div>
+        <h3>Track your progress</h3>
+        <p class="muted">A demo wallet helps you preview how rewards may appear.</p>
+      </article>
     </div>
   </section>
-  <section id="tasks">
-    <h2>Explore earning tasks</h2>
-    <p class="muted">Sample activities only. No real partners are connected.</p>
-    <div class="card"><span class="pill">SAMPLE SURVEY</span><h3>Customer preferences</h3><p class="muted">Imagine answering a short shopping survey.</p><p class="gold">Example reward: 50 points</p><button onclick="completeTask('survey',50,this)">Try demo task</button></div>
-    <div class="card"><span class="pill">SIMPLE TASK</span><h3>Read a short article</h3><p class="muted">Imagine reading an article and answering a question.</p><p class="gold">Example reward: 30 points</p><button onclick="completeTask('article',30,this)">Try demo task</button></div>
-    <div class="card"><span class="pill">SPONSORED OFFER</span><h3>Discover a product</h3><p class="muted">A future partner could offer rewards for an eligible activity.</p><p class="gold">Example reward: 75 points</p><button onclick="completeTask('offer',75,this)">Try demo task</button></div>
+
+  <section class="section" id="earn">
+    <h2>Explore earning categories</h2>
+    <p class="muted">These are demo activities, not verified paid offers.</p>
+
+    <div class="grid">
+      <article class="card">
+        <div class="eyebrow">Demo task</div>
+        <h3>Quick survey</h3>
+        <p class="muted">Preview a short questionnaire activity.</p>
+        <p class="points">+50 demo points</p>
+        <button class="button demo-task" data-points="50">Try demo task</button>
+      </article>
+
+      <article class="card">
+        <div class="eyebrow">Demo task</div>
+        <h3>Read an article</h3>
+        <p class="muted">Preview a simple content task.</p>
+        <p class="points">+30 demo points</p>
+        <button class="button demo-task" data-points="30">Try demo task</button>
+      </article>
+
+      <article class="card">
+        <div class="eyebrow">Demo task</div>
+        <h3>Sponsored offer</h3>
+        <p class="muted">Preview how a sponsored offer might be displayed.</p>
+        <p class="points">+75 demo points</p>
+        <button class="button demo-task" data-points="75">Try demo task</button>
+      </article>
+    </div>
+    <p id="task-message" class="message" role="status"></p>
   </section>
-  <section id="referrals">
-    <h2>Invite friends</h2>
-    <div class="card"><h3>Grow together</h3><p class="muted">Real referral rewards require user accounts and verified referrals.</p><p>Example bonus: <span class="gold">100 points</span></p><button onclick="showReferral()">View demo referral</button><p id="referralMessage" class="muted"></p></div>
+
+  <section class="section" id="wallet">
+    <div class="card">
+      <div class="eyebrow">Demo wallet</div>
+      <h2>Your points</h2>
+      <div class="wallet-number"><span id="wallet-points">0</span> pts</div>
+      <p class="muted">Demo points only. They have no cash value.</p>
+      <button class="button secondary" id="reset-demo">Reset demo points</button>
+    </div>
   </section>
-  <section id="wallet">
-    <h2>Your points wallet</h2>
-    <div class="card"><p class="muted">Available demo points</p><div class="balance"><span id="walletBalance">0</span> points</div><p class="muted">These points cannot be exchanged for money.</p><button onclick="requestWithdrawal()">Test withdrawal request</button><p id="withdrawMessage" class="muted"></p></div>
+
+  <section class="section" id="account">
+    <h2>Your OluEarn account</h2>
+    <p class="muted">Use the same email and password to sign in again.</p>
+
+    <div class="card">
+      <div class="notice">
+        Account access uses Supabase Authentication. A successful
+        registration does not activate real earning or withdrawals.
+      </div>
+
+      <label for="email">Email address</label>
+      <input id="email" type="email" autocomplete="email"
+             placeholder="you@example.com">
+
+      <label for="password">Password (at least 8 characters)</label>
+      <input id="password" type="password"
+             autocomplete="current-password"
+             minlength="8" placeholder="Enter your password">
+
+      <div class="actions">
+        <button class="button" id="signup">Create account</button>
+        <button class="button secondary" id="login">Sign in</button>
+        <button class="button secondary" id="reset-password">Reset password</button>
+        <button class="button secondary hidden" id="logout">Sign out</button>
+      </div>
+
+      <p id="auth-message" class="message" role="status" aria-live="polite">
+        Connecting to account service…
+      </p>
+      <p id="auth-status" class="muted">Not signed in.</p>
+    </div>
   </section>
-  <section id="about">
-    <h2>How OluEarn can work</h2>
-    <div class="card"><h3>1. Complete activities</h3><p class="muted">Earn rewards from eligible surveys and tasks offered by approved partners in a future real service.</p><h3>2. Refer friends</h3><p class="muted">Qualify for referral bonuses under published rules.</p><h3>3. Request a payout</h3><p class="muted">A real service would require secure accounts, verified activity and a supported payout provider.</p></div>
-    <div class="notice">This is a demo. Do not enter bank details. Real rewards require a secure server, database, approved partners, fraud prevention, privacy policy and terms of use.</div>
+
+  <section class="section">
+    <h2>Coming next</h2>
+    <div class="grid">
+      <article class="card">
+        <h3>Referral tracking</h3>
+        <p class="muted">Unique referral links and abuse prevention.</p>
+      </article>
+      <article class="card">
+        <h3>Verified offers</h3>
+        <p class="muted">Approved survey and offer providers.</p>
+      </article>
+      <article class="card">
+        <h3>Real payouts</h3>
+        <p class="muted">Secure server-validated balances and bank-transfer processing.</p>
+      </article>
+    </div>
   </section>
 </main>
-<footer><div class="brand">OluEarn</div><p>Earn more from your spare time.</p><p>Demo version · No real earnings or payouts</p>© 2026 OluEarn</footer>
-<script>
-const STORAGE_KEY='oluearn_demo_v1';
-let points=0,completed=0,done={};
 
-function saveProgress(){
-  try{
-    localStorage.setItem(STORAGE_KEY,JSON.stringify({points,completed,done}));
-  }catch(e){}
-}
-function updateWallet(){
-  document.getElementById('balance').textContent=points;
-  document.getElementById('walletBalance').textContent=points;
-  document.getElementById('completed').textContent=completed;
-}
-function loadProgress(){
-  try{
-    const saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');
-    points=Number.isFinite(saved.points)&&saved.points>=0?saved.points:0;
-    completed=Number.isFinite(saved.completed)&&saved.completed>=0?saved.completed:0;
-    done=saved.done&&typeof saved.done==='object'?saved.done:{};
-  }catch(e){points=0;completed=0;done={};}
-  document.querySelectorAll('button[onclick^="completeTask"]').forEach(button=>{
-    const match=button.getAttribute('onclick').match(/completeTask\('([^']+)'/);
-    if(match&&done[match[1]]){
-      button.textContent='Demo completed';
-      button.disabled=true;
+<footer>
+  <div class="wrap">
+    <strong>OluEarn</strong> · Earn more from your spare time.<br>
+    Demo features are not cash rewards. Real payments are not enabled.
+  </div>
+</footer>
+
+<script>
+  // DEMO ONLY: these points are stored in this browser, not in a secure database.
+  const walletKey = 'oluearn_demo_points_v1';
+  const walletDisplay = document.getElementById('wallet-points');
+  const taskMessage = document.getElementById('task-message');
+
+  function readPoints() {
+    try {
+      return Number(localStorage.getItem(walletKey)) || 0;
+    } catch (_) {
+      return 0;
+    }
+  }
+
+  function showPoints() {
+    walletDisplay.textContent = String(readPoints());
+  }
+
+  document.querySelectorAll('.demo-task').forEach(button => {
+    button.addEventListener('click', () => {
+      const amount = Number(button.dataset.points);
+      try {
+        localStorage.setItem(walletKey, String(readPoints() + amount));
+        showPoints();
+        taskMessage.textContent =
+          'Demo complete: ' + amount + ' points added. These are not cash.';
+      } catch (_) {
+        taskMessage.textContent =
+          'Browser storage is unavailable. No points were saved.';
+      }
+    });
+  });
+
+  document.getElementById('reset-demo').addEventListener('click', () => {
+    try {
+      localStorage.removeItem(walletKey);
+      showPoints();
+      taskMessage.textContent = 'Demo points reset.';
+    } catch (_) {
+      taskMessage.textContent = 'Unable to reset demo points in this browser.';
     }
   });
-  updateWallet();
-}
-function completeTask(id,reward,button){
-  if(done[id])return;
-  done[id]=true;points+=reward;completed++;
-  button.textContent='Demo completed';button.disabled=true;
-  saveProgress();updateWallet();
-  alert('Demo complete! '+reward+' sample points added. These points have no cash value.');
-}
-function showReferral(){
-  document.getElementById('referralMessage').textContent='Demo only: real referral links will be available after accounts are implemented.';
-}
-function requestWithdrawal(){
-  document.getElementById('withdrawMessage').textContent='Demo only: no withdrawal was sent, no bank details were collected, and no money was paid.';
-}
-loadProgress();
-</script>
-  <!-- OluEarn: Supabase connection -->
-<script type="module">
-  import { createClient } from
-    'https://esm.sh/@supabase/supabase-js@2';
 
+  showPoints();
+</script>
+
+<script type="module">
   const SUPABASE_URL =
     'https://mfdwridrrcalvjzmemtg.supabase.co';
 
+  // Replace this placeholder with your Supabase PUBLISHABLE key.
+  // Never use a secret key or service_role key in public website code.
   const SUPABASE_PUBLISHABLE_KEY =
-    sb_publishable_Umj49kpX234qQ0tc1f0QUw_MorI_PKS;
+    'sb_publishable_Umj49kpX234qQ0tc1f0QUw_MorI_PKS;
 
-  const supabase = createClient(
-    SUPABASE_URL,
-    SUPABASE_PUBLISHABLE_KEY
-  );
+  const message = document.getElementById('auth-message');
+  const status = document.getElementById('auth-status');
+  const signupButton = document.getElementById('signup');
+  const loginButton = document.getElementById('login');
+  const resetButton = document.getElementById('reset-password');
+  const logoutButton = document.getElementById('logout');
 
-  window.oluEarnSupabase = supabase;
-
-  console.log('OluEarn Supabase client initialized.');
-</script>
-  <!-- OluEarn account registration and login -->
-<section id="olu-auth" style="max-width:440px;margin:30px auto;padding:22px;background:#151515;color:white;border:1px solid #c9a227;border-radius:14px;font-family:Arial,sans-serif">
-  <h2 style="color:#d8b34b">OluEarn Account</h2>
-  <p>Create an account or sign in to continue.</p>
-
-  <label for="olu-email">Email address</label>
-  <input id="olu-email" type="email" autocomplete="email" required placeholder="you@example.com" style="display:block;box-sizing:border-box;width:100%;padding:12px;margin:8px 0 16px">
-
-  <label for="olu-password">Password</label>
-  <input id="olu-password" type="password" autocomplete="current-password" minlength="8" required placeholder="At least 8 characters" style="display:block;box-sizing:border-box;width:100%;padding:12px;margin:8px 0 16px">
-
-  <button id="olu-signup" type="button" style="padding:12px;margin:4px;background:#d8b34b;color:#111;border:0;border-radius:6px">Create account</button>
-  <button id="olu-login" type="button" style="padding:12px;margin:4px;background:#333;color:white;border:1px solid #d8b34b;border-radius:6px">Sign in</button>
-  <button id="olu-reset" type="button" style="padding:10px;margin:4px;background:transparent;color:#d8b34b;border:0">Forgot password?</button>
-  <button id="olu-logout" type="button" hidden style="padding:10px;margin:4px">Sign out</button>
-
-  <p id="olu-auth-message" role="status" aria-live="polite"></p>
-  <p id="olu-auth-status">Not signed in.</p>
-</section>
-
-<script type="module">
-  const message = document.getElementById('olu-auth-message');
-  const status = document.getElementById('olu-auth-status');
-  const signup = document.getElementById('olu-signup');
-  const login = document.getElementById('olu-login');
-  const reset = document.getElementById('olu-reset');
-  const logout = document.getElementById('olu-logout');
-
-  function showMessage(text) {
+  function say(text) {
     message.textContent = text;
   }
 
-  function getCredentials() {
+  function credentials() {
     return {
-      email: document.getElementById('olu-email').value.trim(),
-      password: document.getElementById('olu-password').value
+      email: document.getElementById('email').value.trim(),
+      password: document.getElementById('password').value
     };
   }
 
-  async function runAuth(action) {
-    const client = window.oluEarnSupabase;
+  function showSession(session) {
+    status.textContent = session?.user
+      ? 'Signed in as ' + session.user.email
+      : 'Not signed in.';
+    logoutButton.classList.toggle('hidden', !session?.user);
+  }
 
-    if (!client) {
-      showMessage('Connection not ready. Refresh and try again.');
-      return;
-    }
+  [signupButton, loginButton, resetButton, logoutButton]
+    .forEach(button => button.disabled = true);
 
-    const { email, password } = getCredentials();
-
-    if (!email) {
-      showMessage('Enter your email address.');
-      return;
-    }
-
-    if (action !== 'reset' && password.length < 8) {
-      showMessage('Enter a password with at least 8 characters.');
-      return;
-    }
-
-    showMessage('Please wait…');
-
+  async function start() {
     try {
-      let result;
-
-      if (action === 'signup') {
-        result = await client.auth.signUp({
-          email,
-          password,
-          options: {
-            emailRedirectTo: window.location.origin +
-              window.location.pathname
-          }
-        });
-      } else if (action === 'login') {
-        result = await client.auth.signInWithPassword({
-          email, password
-        });
-      } else if (action === 'reset') {
-        result = await client.auth.resetPasswordForEmail(email, {
-          redirectTo: window.location.origin +
-            window.location.pathname
-        });
-      } else if (action === 'logout') {
-        result = await client.auth.signOut();
+      if (!SUPABASE_PUBLISHABLE_KEY ||
+          SUPABASE_PUBLISHABLE_KEY.includes('PASTE_YOUR')) {
+        throw new Error('Add your Supabase publishable key in index.html first.');
       }
 
-      if (result?.error) throw result.error;
+      const { createClient } = await import(
+        'https://esm.sh/@supabase/supabase-js@2'
+      );
 
-      if (action === 'signup') {
-        showMessage(
-          result.data.session
-            ? 'Account created. You are signed in.'
-            : 'Check your email for the verification link.'
-        );
-      } else if (action === 'login') {
-        showMessage('Sign-in successful.');
-      } else if (action === 'reset') {
-        showMessage('If that account exists, password-reset instructions will be emailed.');
-      } else {
-        showMessage('You have signed out.');
-      }
+      const supabase = createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+      );
+
+      [signupButton, loginButton, resetButton]
+        .forEach(button => button.disabled = false);
+
+      supabase.auth.onAuthStateChange((_event, session) => {
+        showSession(session);
+      });
+
+      const { data, error } = await supabase.auth.getSession();
+      if (error) throw error;
+      showSession(data.session);
+
+      say('Connected. You can create an account or sign in.');
+
+      signupButton.addEventListener('click', async () => {
+        const { email, password } = credentials();
+
+        if (!email) return say('Enter your email address.');
+        if (password.length < 8) return say('Use at least 8 characters for your password.');
+
+        signupButton.disabled = true;
+        say('Creating your account…');
+
+        try {
+          const { data, error } = await supabase.auth.signUp({
+            email,
+            password,
+            options: {
+              emailRedirectTo: window.location.origin + window.location.pathname
+            }
+          });
+
+          if (error) throw error;
+
+          say(data.session
+            ? 'Account created and signed in.'
+            : 'Registration submitted. Check your email for a verification link.');
+          showSession(data.session);
+        } catch (error) {
+          say(error.message || 'Registration failed. Please try again.');
+        } finally {
+          signupButton.disabled = false;
+        }
+      });
+
+      loginButton.addEventListener('click', async () => {
+        const { email, password } = credentials();
+
+        if (!email) return say('Enter your email address.');
+        if (!password) return say('Enter your password.');
+
+        loginButton.disabled = true;
+        say('Signing in…');
+
+        try {
+          const { data, error } = await supabase.auth.signInWithPassword({
+            email,
+            password
+          });
+
+          if (error) throw error;
+          showSession(data.session);
+          say('Sign-in successful.');
+        } catch (error) {
+          say(error.message || 'Sign-in failed. Check your details and email verification.');
+        } finally {
+          loginButton.disabled = false;
+        }
+      });
+
+      resetButton.addEventListener('click', async () => {
+        const { email } = credentials();
+
+        if (!email) return say('Enter your email address first.');
+
+        resetButton.disabled = true;
+        say('Requesting password reset…');
+
+        try {
+          const { error } = await supabase.auth.resetPasswordForEmail(email, {
+            redirectTo: window.location.origin + window.location.pathname
+          });
+
+          if (error) throw error;
+          say('If the address is registered, password-reset instructions will be sent.');
+        } catch (error) {
+          say(error.message || 'Could not request a password reset.');
+        } finally {
+          resetButton.disabled = false;
+        }
+      });
+
+      logoutButton.addEventListener('click', async () => {
+        logoutButton.disabled = true;
+
+        try {
+          const { error } = await supabase.auth.signOut();
+          if (error) throw error;
+          showSession(null);
+          say('You have signed out.');
+        } catch (error) {
+          say(error.message || 'Sign-out failed.');
+        } finally {
+          logoutButton.disabled = false;
+        }
+      });
+
     } catch (error) {
-      showMessage(error.message || 'Something went wrong. Please try again.');
+      say('Account connection failed: ' +
+        (error.message || 'Check your connection and Supabase settings.'));
     }
   }
 
-  signup.addEventListener('click', () => runAuth('signup'));
-  login.addEventListener('click', () => runAuth('login'));
-  reset.addEventListener('click', () => runAuth('reset'));
-  logout.addEventListener('click', () => runAuth('logout'));
-
-  const client = window.oluEarnSupabase;
-
-  if (client) {
-    client.auth.onAuthStateChange((_event, session) => {
-      const signedIn = Boolean(session?.user);
-      status.textContent = signedIn
-        ? 'Signed in: ' + session.user.email
-        : 'Not signed in.';
-      logout.hidden = !signedIn;
-    });
-
-    client.auth.getSession().then(({ data }) => {
-      const user = data.session?.user;
-      status.textContent = user
-        ? 'Signed in: ' + user.email
-        : 'Not signed in.';
-      logout.hidden = !user;
-    });
-  } else {
-    showMessage('Supabase connection unavailable. Please refresh.
-     );}
-</script>
-</escape>
-</body>
-</html>  <!-- OluEarn account registration and login -->
-<section id="olu-auth" style="max-width:440px;margin:30px auto;padding:22px;background:#151515;color:white;border:1px solid #c9a227;border-radius:14px;font-family:Arial,sans-serif">
-  <h2 style="color:#d8b34b">OluEarn Account</h2>
-  <p>Create an account or sign in to continue.</p>
-
-  <label for="olu-email">Email address</label>
-  <input id="olu-email" type="email" autocomplete="email" required placeholder="you@example.com" style="display:block;box-sizing:border-box;width:100%;padding:12px;margin:8px 0 16px">
-
-  <label for="olu-password">Password</label>
-  <input id="olu-password" type="password" autocomplete="current-password" minlength="8" required placeholder="At least 8 characters" style="display:block;box-sizing:border-box;width:100%;padding:12px;margin:8px 0 16px">
-
-  <button id="olu-signup" type="button" style="padding:12px;margin:4px;background:#d8b34b;color:#111;border:0;border-radius:6px">Create account</button>
-  <button id="olu-login" type="button" style="padding:12px;margin:4px;background:#333;color:white;border:1px solid #d8b34b;border-radius:6px">Sign in</button>
-  <button id="olu-reset" type="button" style="padding:10px;margin:4px;background:transparent;color:#d8b34b;border:0">Forgot password?</button>
-  <button id="olu-logout" type="button" hidden style="padding:10px;margin:4px">Sign out</button>
-
-  <p id="olu-auth-message" role="status" aria-live="polite"></p>
-  <p id="olu-auth-status">Not signed in.</p>
-</section>
-
-<script type="module">
-  const message = document.getElementById('olu-auth-message');
-  const status = document.getElementById('olu-auth-status');
-  const signup = document.getElementById('olu-signup');
-  const login = document.getElementById('olu-login');
-  const reset = document.getElementById('olu-reset');
-  const logout = document.getElementById('olu-logout');
-
-  function showMessage(text) {
-    message.textContent = text;
-  }
-
-  function getCredentials() {
-    return {
-      email: document.getElementById('olu-email').value.trim(),
-      password: document.getElementById('olu-password').value
-    };
-  }
-
-  async function runAuth(action) {
-    const client = window.oluEarnSupabase;
-
-    if (!client) {
-      showMessage('Connection not ready. Refresh and try again.');
-      return;
-    }
-
-    const { email, password } = getCredentials();
-
-    if (!email) {
-      showMessage('Enter your email address.');
-      return;
-    }
-
-    if (action !== 'reset' && password.length < 8) {
-      showMessage('Enter a password with at least 8 characters.');
-      return;
-    }
-
-    showMessage('Please wait…');
-
-    try {
-      let result;
-
-      if (action === 'signup') {
-        result = await client.auth.signUp({
-          email,
-          password,
-          options: {
-            emailRedirectTo: window.location.origin +
-              window.location.pathname
-          }
-        });
-      } else if (action === 'login') {
-        result = await client.auth.signInWithPassword({
-          email, password
-        });
-      } else if (action === 'reset') {
-        result = await client.auth.resetPasswordForEmail(email, {
-          redirectTo: window.location.origin +
-            window.location.pathname
-        });
-      } else if (action === 'logout') {
-        result = await client.auth.signOut();
-      }
-
-      if (result?.error) throw result.error;
-
-      if (action === 'signup') {
-        showMessage(
-          result.data.session
-            ? 'Account created. You are signed in.'
-            : 'Check your email for the verification link.'
-        );
-      } else if (action === 'login') {
-        showMessage('Sign-in successful.');
-      } else if (action === 'reset') {
-        showMessage('If that account exists, password-reset instructions will be emailed.');
-      } else {
-        showMessage('You have signed out.');
-      }
-    } catch (error) {
-      showMessage(error.message || 'Something went wrong. Please try again.');
-    }
-  }
-
-  signup.addEventListener('click', () => runAuth('signup'));
-  login.addEventListener('click', () => runAuth('login'));
-  reset.addEventListener('click', () => runAuth('reset'));
-  logout.addEventListener('click', () => runAuth('logout'));
-
-  const client = window.oluEarnSupabase;
-
-  if (client) {
-    client.auth.onAuthStateChange((_event, session) => {
-      const signedIn = Boolean(session?.user);
-      status.textContent = signedIn
-        ? 'Signed in: ' + session.user.email
-        : 'Not signed in.';
-      logout.hidden = !signedIn;
-    });
-
-    client.auth.getSession().then(({ data }) => {
-      const user = data.session?.user;
-      status.textContent = user
-        ? 'Signed in: ' + user.email
-        : 'Not signed in.';
-      logout.hidden = !user;
-    });
-  } else {
-    showMessage(
-      'Supabase connection unavailable. Please refresh.'
-    );
-  }
+  start();
 </script>
 </body>
 </html>
