@@ -1,719 +1,476 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0a0a0a">
-  <meta name="description" content="OluEarn helps members discover surveys, simple tasks and sponsored offers.">
-  <title>OluEarn | Earn More From Your Spare Time</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0a0a0a">
+<meta name="description" content="OluEarn - discover surveys and simple tasks.">
+<title>OluEarn | Earn More From Your Spare Time</title>
 
-  <style>
-    :root {
-      --bg: #0a0a0a;
-      --panel: #151515;
-      --gold: #d8b34b;
-      --gold-light: #f4d77c;
-      --text: #f7f4ec;
-      --muted: #b8b4a9;
-      --line: #393226;
-    }
-
-    * { box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-    }
-
-    button, input { font: inherit; }
-    button { cursor: pointer; }
-    a { color: var(--gold-light); }
-
-    .wrap {
-      width: min(1080px, 92%);
-      margin: auto;
-    }
-
-    header {
-      border-bottom: 1px solid var(--line);
-      padding: 18px 0;
-    }
-
-    .nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    .brand {
-      color: var(--gold);
-      font-size: 27px;
-      font-weight: 900;
-      letter-spacing: 1px;
-    }
-
-    .brand span { color: white; }
-
-    .nav nav {
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-
-    .nav a {
-      text-decoration: none;
-      font-size: 14px;
-    }
-
-    .hero { padding: 48px 0 34px; }
-
-    .eyebrow {
-      color: var(--gold);
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 12px;
-      font-weight: bold;
-    }
-
-    h1 {
-      font-size: clamp(34px, 6vw, 58px);
-      line-height: 1.1;
-      margin: 12px 0;
-    }
-
-    h2 { line-height: 1.25; }
-
-    .gold { color: var(--gold-light); }
-    .muted { color: var(--muted); }
-
-    .hero p {
-      max-width: 620px;
-      color: var(--muted);
-    }
-
-    .button {
-      border: 1px solid var(--gold);
-      background: var(--gold);
-      color: #111;
-      border-radius: 8px;
-      padding: 12px 16px;
-      font-weight: bold;
-      text-decoration: none;
-      display: inline-block;
-    }
-
-    .button.secondary {
-      background: transparent;
-      color: var(--gold-light);
-    }
-
-    .button:disabled {
-      opacity: .55;
-      cursor: not-allowed;
-    }
-
-    .section { padding: 24px 0; }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .card {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 20px;
-      min-width: 0;
-    }
-
-    .card h3 { margin-top: 5px; }
-
-    .points {
-      color: var(--gold-light);
-      font-weight: bold;
-      font-size: 20px;
-    }
-
-    .wallet-number {
-      font-size: 35px;
-      color: var(--gold-light);
-      font-weight: bold;
-    }
-
-    label {
-      display: block;
-      margin: 12px 0 5px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    input {
-      width: 100%;
-      padding: 12px;
-      background: #090909;
-      border: 1px solid #554a31;
-      border-radius: 7px;
-      color: white;
-    }
-
-    input:focus {
-      outline: 2px solid var(--gold);
-      outline-offset: 2px;
-    }
-
-    .actions {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 16px;
-    }
-
-    .message {
-      overflow-wrap: anywhere;
-      min-height: 24px;
-      color: var(--gold-light);
-    }
-
-    .notice {
-      border-left: 3px solid var(--gold);
-      background: #17140d;
-      padding: 12px 15px;
-      color: var(--muted);
-      border-radius: 5px;
-    }
-
-    .hidden { display: none !important; }
-
-    footer {
-      margin-top: 35px;
-      border-top: 1px solid var(--line);
-      padding: 25px 0;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    @media (max-width: 700px) {
-      .grid { grid-template-columns: 1fr; }
-      .hero { padding-top: 34px; }
-    }
-  </style>
+<style>
+:root {
+  --bg:#0a0a0a;
+  --panel:#151515;
+  --gold:#d8b34b;
+  --light:#f4d77c;
+  --text:#f7f4ec;
+  --muted:#b8b4a9;
+  --line:#393226;
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial,sans-serif;
+  line-height:1.6;
+}
+button,input { font:inherit; }
+button { cursor:pointer; }
+.wrap { width:min(1050px,92%); margin:auto; }
+header { border-bottom:1px solid var(--line); padding:18px 0; }
+.nav {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  flex-wrap:wrap;
+}
+.brand { color:var(--gold); font-size:27px; font-weight:900; }
+.brand span { color:white; }
+nav { display:flex; gap:15px; flex-wrap:wrap; }
+nav a { color:var(--light); text-decoration:none; font-size:14px; }
+.hero { padding:48px 0 35px; }
+.eyebrow {
+  color:var(--gold);
+  text-transform:uppercase;
+  letter-spacing:2px;
+  font-size:12px;
+  font-weight:bold;
+}
+h1 { font-size:clamp(36px,7vw,58px); line-height:1.1; margin:12px 0; }
+h2 { line-height:1.25; }
+.gold { color:var(--light); }
+.muted { color:var(--muted); }
+.hero p { max-width:600px; color:var(--muted); }
+.section { padding:24px 0; }
+.grid {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:16px;
+}
+.card {
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:20px;
+  min-width:0;
+}
+.card h3 { margin-top:5px; }
+.button {
+  display:inline-block;
+  background:var(--gold);
+  color:#111;
+  border:1px solid var(--gold);
+  border-radius:8px;
+  padding:11px 15px;
+  font-weight:bold;
+  text-decoration:none;
+}
+.button.secondary { background:transparent; color:var(--light); }
+button:disabled { opacity:.55; cursor:not-allowed; }
+.actions { display:flex; gap:9px; flex-wrap:wrap; margin-top:16px; }
+.points { color:var(--light); font-weight:bold; font-size:20px; }
+.wallet-number { color:var(--light); font-size:35px; font-weight:bold; }
+label { display:block; margin:13px 0 5px; color:var(--muted); }
+input {
+  display:block;
+  width:100%;
+  padding:12px;
+  background:#090909;
+  border:1px solid #554a31;
+  border-radius:7px;
+  color:white;
+}
+input:focus { outline:2px solid var(--gold); }
+.notice {
+  border-left:3px solid var(--gold);
+  background:#17140d;
+  padding:12px 15px;
+  color:var(--muted);
+  border-radius:5px;
+}
+.message { color:var(--light); overflow-wrap:anywhere; min-height:24px; }
+.hidden { display:none !important; }
+footer {
+  margin-top:35px;
+  border-top:1px solid var(--line);
+  padding:25px 0;
+  color:var(--muted);
+  font-size:13px;
+}
+@media(max-width:700px) {
+  .grid { grid-template-columns:1fr; }
+  .hero { padding-top:34px; }
+}
+</style>
 </head>
 
 <body>
+<header>
+  <div class="wrap nav">
+    <div class="brand">Olu<span>Earn</span></div>
+    <nav aria-label="Main navigation">
+      <a href="#how">How it works</a>
+      <a href="#earn">Explore tasks</a>
+      <a href="#wallet">Wallet</a>
+      <a href="#account">Account</a>
+    </nav>
+  </div>
+</header>
 
-  <!-- WEBSITE HEADER -->
-  <header>
-    <div class="wrap nav">
-      <div class="brand">Olu<span>Earn</span></div>
+<main class="wrap">
 
-      <nav aria-label="Main navigation">
-        <a href="#how">How it works</a>
-        <a href="#earn">Earn</a>
-        <a href="#wallet">Wallet</a>
-        <a href="#account">Account</a>
-      </nav>
+  <section class="hero">
+    <div class="eyebrow">Your time. Your opportunities.</div>
+    <h1>Earn more from<br><span class="gold">your spare time.</span></h1>
+    <p>
+      Discover opportunities, explore simple tasks and track your
+      progress with OluEarn.
+    </p>
+    <a class="button" href="#account">Create your account</a>
+    <a class="button secondary" href="#earn">Explore tasks</a>
+  </section>
+
+  <section class="section" id="how">
+    <h2>How OluEarn works</h2>
+    <div class="grid">
+      <article class="card">
+        <div class="points">01</div>
+        <h3>Create an account</h3>
+        <p class="muted">Register using your email address.</p>
+      </article>
+      <article class="card">
+        <div class="points">02</div>
+        <h3>Explore opportunities</h3>
+        <p class="muted">Discover tasks and future verified offers.</p>
+      </article>
+      <article class="card">
+        <div class="points">03</div>
+        <h3>Track your progress</h3>
+        <p class="muted">View your demo points in the wallet.</p>
+      </article>
     </div>
-  </header>
+  </section>
 
-  <main class="wrap">
+  <section class="section" id="earn">
+    <h2>Explore tasks</h2>
+    <p class="muted">Try these sample activities.</p>
 
-    <!-- WELCOME SECTION -->
-    <section class="hero">
-      <div class="eyebrow">Your time. Your opportunities.</div>
+    <div class="grid">
+      <article class="card">
+        <div class="eyebrow">Sample activity</div>
+        <h3>Quick survey</h3>
+        <p class="muted">Preview a questionnaire activity.</p>
+        <p class="points">+50 demo points</p>
+        <button class="button demo-task" data-points="50">Try task</button>
+      </article>
 
-      <h1>
-        Earn more from<br>
-        <span class="gold">your spare time.</span>
-      </h1>
+      <article class="card">
+        <div class="eyebrow">Sample activity</div>
+        <h3>Read an article</h3>
+        <p class="muted">Preview a content activity.</p>
+        <p class="points">+30 demo points</p>
+        <button class="button demo-task" data-points="30">Try task</button>
+      </article>
 
-      <p>
-        Discover surveys, simple tasks, referrals and sponsored offers
-        in one place. Create an account to get started.
-      </p>
-
-      <a class="button" href="#account">Create your account</a>
-      <a class="button secondary" href="#earn">Explore tasks</a>
-    </section>
-
-    <div class="notice">
-      <strong>Demo mode:</strong> The tasks and points on this page are
-      examples only. They are not cash and cannot be withdrawn.
+      <article class="card">
+        <div class="eyebrow">Sample activity</div>
+        <h3>Sponsored offer</h3>
+        <p class="muted">Preview an offer listing.</p>
+        <p class="points">+75 demo points</p>
+        <button class="button demo-task" data-points="75">Try task</button>
+      </article>
     </div>
+    <p id="task-message" class="message" role="status"></p>
+  </section>
 
-    <!-- HOW IT WORKS -->
-    <section class="section" id="how">
-      <h2>How OluEarn works</h2>
-
-      <div class="grid">
-        <article class="card">
-          <div class="points">01</div>
-          <h3>Create an account</h3>
-          <p class="muted">
-            Register with your email and verify it if requested.
-          </p>
-        </article>
-
-        <article class="card">
-          <div class="points">02</div>
-          <h3>Discover opportunities</h3>
-          <p class="muted">
-            Explore surveys, simple activities and sponsored offers.
-          </p>
-        </article>
-
-        <article class="card">
-          <div class="points">03</div>
-          <h3>Track your progress</h3>
-          <p class="muted">
-            Preview a rewards wallet with demo points.
-          </p>
-        </article>
-      </div>
-    </section>
-
-    <!-- DEMO TASKS -->
-    <section class="section" id="earn">
-      <h2>Explore earning categories</h2>
-
-      <p class="muted">
-        These activities are for testing. They are not verified paid offers.
-      </p>
-
-      <div class="grid">
-        <article class="card">
-          <div class="eyebrow">Demo task</div>
-          <h3>Quick survey</h3>
-          <p class="muted">Preview a short questionnaire activity.</p>
-          <p class="points">+50 demo points</p>
-          <button class="button demo-task" data-points="50">
-            Try demo task
-          </button>
-        </article>
-
-        <article class="card">
-          <div class="eyebrow">Demo task</div>
-          <h3>Read an article</h3>
-          <p class="muted">Preview a simple content task.</p>
-          <p class="points">+30 demo points</p>
-          <button class="button demo-task" data-points="30">
-            Try demo task
-          </button>
-        </article>
-
-        <article class="card">
-          <div class="eyebrow">Demo task</div>
-          <h3>Sponsored offer</h3>
-          <p class="muted">
-            Preview how a sponsored offer might appear.
-          </p>
-          <p class="points">+75 demo points</p>
-          <button class="button demo-task" data-points="75">
-            Try demo task
-          </button>
-        </article>
-      </div>
-
-      <p id="task-message" class="message" role="status"></p>
-    </section>
-
-    <!-- DEMO WALLET -->
-    <section class="section" id="wallet">
-      <div class="card">
-        <div class="eyebrow">Demo wallet</div>
-        <h2>Your points</h2>
-
-        <div class="wallet-number">
-          <span id="wallet-points">0</span> pts
-        </div>
-
-        <p class="muted">
-          These are demo points only. They have no cash value.
-        </p>
-
-        <button class="button secondary" id="reset-demo">
-          Reset demo points
-        </button>
-      </div>
-    </section>
-
-    <!-- THE ONLY ACCOUNT AND LOGIN SECTION -->
-    <section class="section" id="account">
-      <h2>Your OluEarn account</h2>
-
-      <p class="muted">
-        Create an account or sign in to an existing account below.
-      </p>
-
-      <div class="card">
-        <div class="notice">
-          Account access uses Supabase Authentication.
-          Real earning and withdrawals are not enabled yet.
-        </div>
-
-        <label for="email">Email address</label>
-        <input
-          id="email"
-          type="email"
-          autocomplete="email"
-          placeholder="you@example.com"
-        >
-
-        <label for="password">Password</label>
-        <input
-          id="password"
-          type="password"
-          autocomplete="current-password"
-          minlength="8"
-          placeholder="Enter your password"
-        >
-
-        <div class="actions">
-          <button class="button" id="signup" disabled>
-            Create account
-          </button>
-
-          <button class="button secondary" id="login" disabled>
-            Sign in
-          </button>
-
-          <button class="button secondary" id="reset-password" disabled>
-            Reset password
-          </button>
-
-          <button class="button secondary hidden" id="logout" disabled>
-            Sign out
-          </button>
-        </div>
-
-        <p
-          id="auth-message"
-          class="message"
-          role="status"
-          aria-live="polite"
-        >
-          Connecting to account service…
-        </p>
-
-        <p id="auth-status" class="muted">
-          Not signed in.
-        </p>
-      </div>
-    </section>
-
-    <!-- FUTURE FEATURES -->
-    <section class="section">
-      <h2>Coming next</h2>
-
-      <div class="grid">
-        <article class="card">
-          <h3>Referral tracking</h3>
-          <p class="muted">
-            Referral links and abuse prevention.
-          </p>
-        </article>
-
-        <article class="card">
-          <h3>Verified offers</h3>
-          <p class="muted">
-            Approved survey and offer providers.
-          </p>
-        </article>
-
-        <article class="card">
-          <h3>Real payouts</h3>
-          <p class="muted">
-            Secure reward records and bank-transfer processing.
-          </p>
-        </article>
-      </div>
-    </section>
-
-  </main>
-
-  <footer>
-    <div class="wrap">
-      <strong>OluEarn</strong> · Earn more from your spare time.<br>
-      Demo points are not cash rewards. Real payments are not enabled.
+  <section class="section" id="wallet">
+    <div class="card">
+      <div class="eyebrow">Your wallet</div>
+      <h2>Demo points balance</h2>
+      <div class="wallet-number"><span id="wallet-points">0</span> pts</div>
+      <p class="muted">Sample points only; not withdrawable cash.</p>
+      <button class="button secondary" id="reset-demo">Reset demo points</button>
     </div>
-  </footer>
+  </section>
 
-  <!-- DEMO WALLET SCRIPT -->
-  <script>
-    const walletKey = "oluearn_demo_points_v1";
-    const walletDisplay = document.getElementById("wallet-points");
-    const taskMessage = document.getElementById("task-message");
+  <!-- ONE ACCOUNT SECTION ONLY -->
+  <section class="section" id="account">
+    <h2>Your OluEarn account</h2>
+    <p class="muted">Create an account or sign in below.</p>
 
-    function readPoints() {
-      try {
-        return Number(localStorage.getItem(walletKey)) || 0;
-      } catch (error) {
-        return 0;
-      }
+    <div class="card">
+      <label for="email">Email address</label>
+      <input
+        id="email"
+        type="email"
+        autocomplete="email"
+        placeholder="you@example.com"
+      >
+
+      <label for="password">Password</label>
+      <input
+        id="password"
+        type="password"
+        autocomplete="current-password"
+        minlength="8"
+        placeholder="Enter your password"
+      >
+
+      <div class="actions">
+        <button class="button" id="signup" disabled>Create account</button>
+        <button class="button secondary" id="login" disabled>Sign in</button>
+        <button class="button secondary" id="reset-password" disabled>Reset password</button>
+        <button class="button secondary hidden" id="logout" disabled>Sign out</button>
+      </div>
+
+      <p id="auth-message" class="message" role="status" aria-live="polite">
+        Connecting to account service…
+      </p>
+      <p id="auth-status" class="muted">Not signed in.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="brand">Olu<span>Earn</span></div>
+    <p>Your time. Your opportunities.</p>
+    <p>© 2026 OluEarn</p>
+  </div>
+</footer>
+
+<script>
+const walletKey = "oluearn_demo_points_v1";
+const walletDisplay = document.getElementById("wallet-points");
+const taskMessage = document.getElementById("task-message");
+
+function readPoints() {
+  try {
+    return Number(localStorage.getItem(walletKey)) || 0;
+  } catch (error) {
+    return 0;
+  }
+}
+
+function showPoints() {
+  walletDisplay.textContent = String(readPoints());
+}
+
+document.querySelectorAll(".demo-task").forEach(function(button) {
+  button.addEventListener("click", function() {
+    const amount = Number(button.dataset.points);
+    try {
+      localStorage.setItem(walletKey, String(readPoints() + amount));
+      showPoints();
+      taskMessage.textContent =
+        amount + " demo points added. These are not cash.";
+    } catch (error) {
+      taskMessage.textContent = "Unable to save demo points in this browser.";
     }
+  });
+});
 
-    function showPoints() {
-      walletDisplay.textContent = String(readPoints());
-    }
-
-    document.querySelectorAll(".demo-task").forEach(function(button) {
-      button.addEventListener("click", function() {
-        const amount = Number(button.dataset.points);
-
-        try {
-          localStorage.setItem(
-            walletKey,
-            String(readPoints() + amount)
-          );
-
-          showPoints();
-          taskMessage.textContent =
-            "Demo complete: " + amount +
-            " points added. These are not cash.";
-        } catch (error) {
-          taskMessage.textContent =
-            "Browser storage is unavailable. Points were not saved.";
-        }
-      });
-    });
-
-    document.getElementById("reset-demo").addEventListener("click", function() {
-      try {
-        localStorage.removeItem(walletKey);
-        showPoints();
-        taskMessage.textContent = "Demo points reset.";
-      } catch (error) {
-        taskMessage.textContent =
-          "Unable to reset demo points in this browser.";
-      }
-    });
-
+document.getElementById("reset-demo").addEventListener("click", function() {
+  try {
+    localStorage.removeItem(walletKey);
     showPoints();
-  </script>
+    taskMessage.textContent = "Demo points reset.";
+  } catch (error) {
+    taskMessage.textContent = "Unable to reset demo points.";
+  }
+});
 
-  <!-- SUPABASE ACCOUNT SCRIPT -->
-  <script type="module">
-    const SUPABASE_URL =
-      "https://mfdwridrrcalvjzmemtg.supabase.co";
-    // Replace the placeholder below with your existing publishable key.
-    const SUPABASE_PUBLISHABLE_KEY =
-      "sb_publishable_Umj49kpX234qQ0tc1f0QUw_MorI_PKS";
+showPoints();
+</script>
 
-    const message = document.getElementById("auth-message");
-    const status = document.getElementById("auth-status");
+<script type="module">
+const SUPABASE_URL = "https://mfdwridrrcalvjzmemtg.supabase.co";
 
-    const signupButton = document.getElementById("signup");
-    const loginButton = document.getElementById("login");
-    const resetButton = document.getElementById("reset-password");
-    const logoutButton = document.getElementById("logout");
+// IMPORTANT: replace this placeholder with your existing publishable key.
+const SUPABASE_PUBLISHABLE_KEY =
+  "sb_publishable_Umj49kpX234qQ0tc1f0QUw_MorI_PKS";
 
-    function say(text) {
-      message.textContent = text;
+const message = document.getElementById("auth-message");
+const status = document.getElementById("auth-status");
+const signupButton = document.getElementById("signup");
+const loginButton = document.getElementById("login");
+const resetButton = document.getElementById("reset-password");
+const logoutButton = document.getElementById("logout");
+
+function say(text) {
+  message.textContent = text;
+}
+
+function credentials() {
+  return {
+    email: document.getElementById("email").value.trim(),
+    password: document.getElementById("password").value
+  };
+}
+
+function showSession(session) {
+  if (session && session.user) {
+    status.textContent = "Signed in as " + session.user.email;
+    logoutButton.classList.remove("hidden");
+    logoutButton.disabled = false;
+  } else {
+    status.textContent = "Not signed in.";
+    logoutButton.classList.add("hidden");
+    logoutButton.disabled = true;
+  }
+}
+
+async function startAccountSystem() {
+  try {
+    if (
+      !SUPABASE_PUBLISHABLE_KEY ||
+      SUPABASE_PUBLISHABLE_KEY.includes("PASTE_YOUR")
+    ) {
+      throw new Error("Add your Supabase publishable key in index.html first.");
     }
 
-    function credentials() {
-      return {
-        email: document.getElementById("email").value.trim(),
-        password: document.getElementById("password").value
-      };
-    }
+    const { createClient } = await import(
+      "https://esm.sh/@supabase/supabase-js@2"
+    );
 
-    function showSession(session) {
-      if (session && session.user) {
-        status.textContent =
-          "Signed in as " + session.user.email;
-        logoutButton.classList.remove("hidden");
-        logoutButton.disabled = false;
-      } else {
-        status.textContent = "Not signed in.";
-        logoutButton.classList.add("hidden");
-        logoutButton.disabled = true;
-      }
-    }
+    const supabase = createClient(
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY
+    );
 
-    async function startAccountSystem() {
+    const { data, error } = await supabase.auth.getSession();
+    if (error) throw error;
+
+    showSession(data.session);
+
+    supabase.auth.onAuthStateChange(function(event, session) {
+      showSession(session);
+    });
+
+    signupButton.disabled = false;
+    loginButton.disabled = false;
+    resetButton.disabled = false;
+    say("Connected. You can create an account or sign in.");
+
+    signupButton.addEventListener("click", async function() {
+      const { email, password } = credentials();
+
+      if (!email) return say("Enter your email address.");
+      if (password.length < 8) return say("Use at least 8 characters for your password.");
+
+      signupButton.disabled = true;
+      say("Creating your account…");
+
       try {
-        if (
-          !SUPABASE_PUBLISHABLE_KEY ||
-          SUPABASE_PUBLISHABLE_KEY.includes("PASTE_YOUR")
-        ) {
-          throw new Error(
-            "Add your Supabase publishable key in index.html first."
-          );
-        }
-
-        const { createClient } = await import(
-          "https://esm.sh/@supabase/supabase-js@2"
-        );
-
-        const supabase = createClient(
-          SUPABASE_URL,
-          SUPABASE_PUBLISHABLE_KEY
-        );
-
-        signupButton.disabled = false;
-        loginButton.disabled = false;
-        resetButton.disabled = false;
-
-        supabase.auth.onAuthStateChange(function(event, session) {
-          showSession(session);
+        const { data, error } = await supabase.auth.signUp({
+          email,
+          password,
+          options: {
+            emailRedirectTo: window.location.origin + window.location.pathname
+          }
         });
 
-        const { data, error } = await supabase.auth.getSession();
+        if (error) throw error;
+
+        if (data.session) {
+          showSession(data.session);
+          say("Account created successfully.");
+        } else {
+          say("Registration submitted. Check your email for a verification link.");
+        }
+      } catch (error) {
+        say(error.message || "Registration failed. Please try again.");
+      } finally {
+        signupButton.disabled = false;
+      }
+    });
+
+    loginButton.addEventListener("click", async function() {
+      const { email, password } = credentials();
+
+      if (!email) return say("Enter your email address.");
+      if (!password) return say("Enter your password.");
+
+      loginButton.disabled = true;
+      say("Signing in…");
+
+      try {
+        const { data, error } = await supabase.auth.signInWithPassword({
+          email,
+          password
+        });
 
         if (error) throw error;
 
         showSession(data.session);
-        say("Connected. You can create an account or sign in.");
-
-        signupButton.addEventListener("click", async function() {
-          const { email, password } = credentials();
-
-          if (!email) {
-            say("Enter your email address.");
-            return;
-          }
-
-          if (password.length < 8) {
-            say("Please use a password with at least 8 characters.");
-            return;
-          }
-
-          signupButton.disabled = true;
-          say("Creating your account…");
-
-          try {
-            const { data, error } = await supabase.auth.signUp({
-              email: email,
-              password: password,
-              options: {
-                emailRedirectTo:
-                  window.location.origin + window.location.pathname
-              }
-            });
-
-            if (error) throw error;
-
-            if (data.session) {
-              showSession(data.session);
-              say("Account created successfully.");
-            } else {
-              say(
-                "Registration submitted. Check your email for a verification link."
-              );
-            }
-          } catch (error) {
-            say(error.message || "Registration failed. Please try again.");
-          } finally {
-            signupButton.disabled = false;
-          }
-        });
-
-        loginButton.addEventListener("click", async function() {
-          const { email, password } = credentials();
-
-          if (!email) {
-            say("Enter your email address.");
-            return;
-          }
-
-          if (!password) {
-            say("Enter your password.");
-            return;
-          }
-
-          loginButton.disabled = true;
-          say("Signing in…");
-
-          try {
-            const { data, error } =
-              await supabase.auth.signInWithPassword({
-                email: email,
-                password: password
-              });
-
-            if (error) throw error;
-
-            showSession(data.session);
-            say("Sign-in successful.");
-          } catch (error) {
-            say(
-              error.message ||
-              "Sign-in failed. Check your details and email verification."
-            );
-          } finally {
-            loginButton.disabled = false;
-          }
-        });
-
-        resetButton.addEventListener("click", async function() {
-          const { email } = credentials();
-
-          if (!email) {
-            say("Enter your email address first.");
-            return;
-          }
-
-          resetButton.disabled = true;
-          say("Requesting password reset…");
-
-          try {
-            const { error } =
-              await supabase.auth.resetPasswordForEmail(email, {
-                redirectTo:
-                  window.location.origin + window.location.pathname
-              });
-
-            if (error) throw error;
-
-            say(
-              "If the address is registered, password-reset instructions will be sent."
-            );
-          } catch (error) {
-            say(
-              error.message ||
-              "Could not request a password reset."
-            );
-          } finally {
-            resetButton.disabled = false;
-          }
-        });
-
-        logoutButton.addEventListener("click", async function() {
-          logoutButton.disabled = true;
-
-          try {
-            const { error } = await supabase.auth.signOut();
-
-            if (error) throw error;
-
-            showSession(null);
-            say("You have signed out.");
-          } catch (error) {
-            say(error.message || "Sign-out failed.");
-          } finally {
-            logoutButton.disabled = false;
-          }
-        });
-
+        say("Sign-in successful.");
       } catch (error) {
-        say(
-          "Account connection failed: " +
-          (error.message || "Check your connection and Supabase settings.")
-        );
+        say(error.message || "Sign-in failed. Check your details.");
+      } finally {
+        loginButton.disabled = false;
       }
-    }
+    });
 
-    startAccountSystem();
-  </script>
+    resetButton.addEventListener("click", async function() {
+      const { email } = credentials();
+
+      if (!email) return say("Enter your email address first.");
+
+      resetButton.disabled = true;
+      say("Requesting password reset…");
+
+      try {
+        const { error } = await supabase.auth.resetPasswordForEmail(email, {
+          redirectTo: window.location.origin + window.location.pathname
+        });
+
+        if (error) throw error;
+
+        say("If the address is registered, password-reset instructions will be sent.");
+      } catch (error) {
+        say(error.message || "Could not request a password reset.");
+      } finally {
+        resetButton.disabled = false;
+      }
+    });
+
+    logoutButton.addEventListener("click", async function() {
+      logoutButton.disabled = true;
+
+      try {
+        const { error } = await supabase.auth.signOut();
+        if (error) throw error;
+
+        showSession(null);
+        say("You have signed out.");
+      } catch (error) {
+        say(error.message || "Sign-out failed.");
+      } finally {
+        logoutButton.disabled = false;
+      }
+    });
+
+  } catch (error) {
+    say("Account connection failed: " + (error.message || "Check your connection."));
+  }
+}
+
+startAccountSystem();
+</script>
 
 </body>
 </html>
