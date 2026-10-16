@@ -140,5 +140,154 @@ sb_publishable_Umj49kpX234qQ0tc1f0QUw_MorI_PKS
   window.oluEarnSupabase = supabase;
   console.log('OluEarn Supabase client initialized.');
 </script>
+  <!-- OluEarn account registration and login -->
+<section id="olu-auth" style="max-width:440px;margin:30px auto;padding:22px;background:#151515;color:white;border:1px solid #c9a227;border-radius:14px;font-family:Arial,sans-serif">
+  <h2 style="color:#d8b34b">OluEarn Account</h2>
+  <p>Create an account or sign in to continue.</p>
+
+  <label for="olu-email">Email address</label>
+  <input id="olu-email" type="email" autocomplete="email" required placeholder="you@example.com" style="display:block;box-sizing:border-box;width:100%;padding:12px;margin:8px 0 16px">
+
+  <label for="olu-password">Password</label>
+  <input id="olu-password" type="password" autocomplete="current-password" minlength="8" required placeholder="At least 8 characters" style="display:block;box-sizing:border-box;width:100%;padding:12px;margin:8px 0 16px">
+
+  <button id="olu-signup" type="button" style="padding:12px;margin:4px;background:#d8b34b;color:#111;border:0;border-radius:6px">Create account</button>
+  <button id="olu-login" type="button" style="padding:12px;margin:4px;background:#333;color:white;border:1px solid #d8b34b;border-radius:6px">Sign in</button>
+  <button id="olu-reset" type="button" style="padding:10px;margin:4px;background:transparent;color:#d8b34b;border:0">Forgot password?</button>
+  <button id="olu-logout" type="button" hidden style="padding:10px;margin:4px">Sign out</button>
+
+  <p id="olu-auth-message" role="status" aria-live="polite"></p>
+  <p id="olu-auth-status">Not signed in.</p>
+</section>
+
+<script type="module">
+  const message = document.getElementById('olu-auth-message');
+  const status = document.getElementById('olu-auth-status');
+  const signup = document.getElementById('olu-signup');
+  const login = document.getElementById('olu-login');
+  const reset = document.getElementById('olu-reset');
+  const logout = document.getElementById('olu-logout');
+
+  function showMessage(text) {
+    message.textContent = text;
+  }
+
+  function getCredentials() {
+    return {
+      email: document.getElementById('olu-email').value.trim(),
+      password: document.getElementById('olu-password').value
+    };
+  }
+
+  async function runAuth(action) {
+    const client = window.oluEarnSupabase;
+
+    if (!client) {
+      showMessage('Connection not ready. Refresh and try again.');
+      return;
+    }
+
+    const { email, password } = getCredentials();
+
+    if (!email) {
+      showMessage('Enter your email address.');
+      return;
+    }
+
+    if (action !== 'reset' && password.length < 8) {
+      showMessage('Enter a password with at least 8 characters.');
+      return;
+    }
+
+    showMessage('Please wait…');
+
+    try {
+      let result;
+
+      if (action === 'signup') {
+        result = await client.auth.signUp({
+          email,
+          password,
+          options: {
+            emailRedirectTo: window.location.origin +
+              window.location.pathname
+          }
+        });
+      } else if (action === 'login') {
+        result = await client.auth.signInWithPassword({
+          email, password
+        });
+      } else if (action === 'reset') {
+        result = await client.auth.resetPasswordForEmail(email, {
+          redirectTo: window.location.origin +
+            window.location.pathname
+        });
+      } else if (action === 'logout') {
+        result = await client.auth.signOut();
+      }
+
+      if (result?.error) throw result.error;
+
+      if (action === 'signup') {
+        showMessage(
+          result.data.session
+            ? 'Account created. You are signed in.'
+            : 'Check your email for the verification link.'
+        );
+      } else if (action === 'login') {
+        showMessage('Sign-in successful.');
+      } else if (action === 'reset') {
+        showMessage('If that account exists, password-reset instructions will be emailed.');
+      } else {
+        showMessage('You have signed out.');
+      }
+    } catch (error) {
+      showMessage(error.message || 'Something went wrong. Please try again.');
+    }
+  }
+
+  signup.addEventListener('click', () => runAuth('signup'));
+  login.addEventListener('click', () => runAuth('login'));
+  reset.addEventListener('click', () => runAuth('reset'));
+  logout.addEventListener('click', () => runAuth('logout'));
+
+  const client = window.oluEarnSupabase;
+
+  if (client) {
+    client.auth.onAuthStateChange((_event, session) => {
+      const signedIn = Boolean(session?.user);
+      status.textContent = signedIn
+        ? 'Signed in: ' + session.user.email
+        : 'Not signed in.';
+      logout.hidden = !signedIn;
+    });
+
+    client.auth.getSession().then(({ data }) => {
+      const user = data.session?.user;
+      status.textContent = user
+        ? 'Signed in: ' + user.email
+        : 'Not signed in.';
+      logout.hidden = !user;
+    });
+  } else {
+    showMessage('Supabase connection unavailable. Please refresh.');
+  }
+</script>
+</escape>
+
+## Step 3: Save and test
+
+1. Click **Commit changes** in GitHub.
+2. Open your live OluEarn website and refresh it.
+3. Check that the new account form appears and all three demo task cards remain visible.
+4. Try creating an account with an email address you control. Supabase should send a verification email if email confirmation is enabled.
+
+If the page turns white, immediately stop editing and restore the last working version in GitHub's commit history.
+
+## Important security step
+
+This creates basic email registration, login, password reset, and sign-out controls. It **does not yet secure user-specific balances, task rewards, or withdrawals**. Before treating points as real earnings, we must add database tables with Row Level Security policies and server-side reward validation.
+
+**Tell me what happens after you save:** do you see the new OluEarn account form, or is anything missing?
 </body>
 </html>
