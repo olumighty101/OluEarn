@@ -129,14 +129,19 @@ loadProgress();
   import { createClient } from
     'https://esm.sh/@supabase/supabase-js@2';
 
-  const SUPABASE_URL = https://mfdwridrrcalvjzmemtg.supabase.co
+  const SUPABASE_URL =
+    'https://mfdwridrrcalvjzmemtg.supabase.co';
+
   const SUPABASE_PUBLISHABLE_KEY =
-sb_publishable_Umj49kpX234qQ0tc1f0QUw_MorI_PKS
+    sb_publishable_Umj49kpX234qQ0tc1f0QUw_MorI_PKS;
+
   const supabase = createClient(
     SUPABASE_URL,
     SUPABASE_PUBLISHABLE_KEY
-   );
- window.oluEarnSupabase = supabase;
+  );
+
+  window.oluEarnSupabase = supabase;
+
   console.log('OluEarn Supabase client initialized.');
 </script>
   <!-- OluEarn account registration and login -->
@@ -404,8 +409,9 @@ sb_publishable_Umj49kpX234qQ0tc1f0QUw_MorI_PKS
       logout.hidden = !user;
     });
   } else {
-    showMessage('Supabase connection unavailable. Please refresh.'
-     );
+    showMessage(
+      'Supabase connection unavailable. Please refresh.'
+    );
   }
 </script>
 </body>
