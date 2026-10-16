@@ -124,5 +124,21 @@ function requestWithdrawal(){
 }
 loadProgress();
 </script>
+  <!-- OluEarn: Supabase connection -->
+<script type="module">
+  import { createClient } from
+    'https://esm.sh/@supabase/supabase-js@2';
+
+  const SUPABASE_URL = https://mfdwridrrcalvjzmemtg.supabase.co
+  const SUPABASE_PUBLISHABLE_KEY =
+sb_publishable_Umj49kpX234qQ0tc1f0QUw_MorI_PKS
+  const supabase = createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
+
+  window.oluEarnSupabase = supabase;
+  console.log('OluEarn Supabase client initialized.');
+</script>
 </body>
 </html>
