@@ -12,9 +12,9 @@
 </style>
 </head>
 <body>
-<header><div class="wrap nav"><div class="brand">Olu<span>Earn</span></div><nav aria-label="Main navigation"><a href="#how">How it works</a><a href="#earn">Tasks</a><a href="#wallet">Wallet</a><a href="#account">Account</a></nav></div></header>
+<header><div class="wrap nav"><div class="brand">Olu<span>Earn</span></div><nav aria-label="Main navigation"><a href="#how">How it works</a><a href="#earn">Tasks</a><a href="#wallet">Wallet</a></nav></div></header>
 <main class="wrap">
-<section class="hero"><div class="eyebrow">Your time. Your opportunities.</div><h1>Earn more from<br><span class="gold">your spare time.</span></h1><p>Discover opportunities, explore simple tasks and track your progress. OluEarn clearly separates sample points from real, verified rewards.</p><div class="actions"><a class="button" href="#account">Create your account</a><a class="button secondary" href="#earn">Explore tasks</a></div></section>
+<section class="hero"><div class="eyebrow">Your time. Your opportunities.</div><h1>Earn more from<br><span class="gold">your spare time.</span></h1><p>Explore sample tasks and track demo points without creating an account. Real earning opportunities are not active until verified providers and secure reward processing are connected.</p><div class="actions"><a class="button" href="#earn">Explore tasks</a><a class="button secondary" href="#wallet">View wallet</a></div></section>
 <section class="section" id="how"><h2>How OluEarn works</h2><div class="grid"><article class="card"><div class="points">01</div><h3>Create an account</h3><p class="muted">Register with your email and verify it if required.</p></article><article class="card"><div class="points">02</div><h3>Complete verified offers</h3><p class="muted">Only offers connected to an approved provider and verified completion process can earn real rewards.</p></article><article class="card"><div class="points">03</div><h3>Track and withdraw</h3><p class="muted">Eligible rewards must be recorded securely before payout can be enabled.</p></article></div></section>
 <section class="section" id="earn"><h2>Tasks and opportunities</h2><p class="muted">Sample activities below are for testing the website only. They do not pay cash.</p><div class="grid">
 <article class="card"><div class="eyebrow">Demo only</div><h3>Quick survey preview</h3><p class="muted">Test how a survey activity appears.</p><p class="points">+50 demo points</p><button class="button demo-task" data-points="50">Try demo task</button></article>
@@ -24,14 +24,9 @@
 <div class="card" style="margin-top:16px"><div class="eyebrow">Real earning opportunities</div><h3>Verified surveys and offers</h3><p class="muted">No live survey provider is connected yet. Real offers will appear here only after a provider agreement, eligibility rules, completion callbacks, and reward verification have been configured.</p><span class="pill">Not active yet</span></div></section>
 <section class="section" id="wallet"><h2>Your wallet</h2><div class="card"><div class="balance-row"><div class="balance-box"><div class="eyebrow">Demo wallet</div><div class="wallet-number"><span id="wallet-points">0</span> pts</div><p class="muted small">Browser-stored sample points. Not cash and not withdrawable.</p><button class="button secondary" id="reset-demo">Reset demo points</button></div><div class="balance-box"><div class="eyebrow">Real rewards</div><div class="wallet-number">Not enabled</div><p class="muted small">No real reward balance is available until secure server-side reward records are implemented.</p></div></div></div></section>
 <section class="section" id="withdrawals"><h2>Bank-transfer withdrawals</h2><div class="card"><p class="muted">Withdrawals are not active. Do not submit bank details here. Before payouts can be enabled, OluEarn needs a secure backend, reward eligibility and minimum-withdrawal rules, fraud checks, and a configured payment provider or verified manual payout process.</p><span class="pill">Withdrawals not enabled</span></div></section>
-<section class="section" id="account"><h2>Your OluEarn account</h2><p class="muted">Create an account or sign in below.</p><div class="card">
-<label for="email">Email address</label><input id="email" type="email" autocomplete="email" placeholder="you@example.com">
-<label for="password">Password</label><input id="password" type="password" autocomplete="current-password" minlength="8" placeholder="At least 8 characters">
-<div class="actions"><button class="button" id="signup" disabled>Create account</button><button class="button secondary" id="login" disabled>Sign in</button><button class="button secondary" id="reset-password" disabled>Reset password</button><button class="button secondary hidden" id="logout" disabled>Sign out</button></div>
-<p id="auth-message" class="message" role="status" aria-live="polite">Connecting to account service…</p><p id="auth-status" class="muted">Not signed in.</p><p class="muted small">Account access does not itself activate paid surveys, real rewards, or withdrawals.</p>
-</div></section>
+
 </main>
-<footer><div class="wrap"><div class="brand">Olu<span>Earn</span></div><p>Your time. Your opportunities.</p><p>Demo points are not cash rewards. Real offers and payouts are not enabled until configured and tested.</p><p>© 2026 OluEarn</p></div></footer>
+<footer><div class="wrap"><div class="brand">Olu<span>Earn</span></div><p>Your time. Your opportunities.</p><p>Demo points are not cash rewards. Real offers and payouts are not enabled until configured and tested.</p><p>No account required for demo tasks. Demo points are not cash; real earning features are not yet active.<br>© 2026 OluEarn</p></div></footer>
 <script>
 (function(){
   const walletKey="oluearn_demo_points_v1";
@@ -44,49 +39,6 @@
   showPoints();
 })();
 </script>
-<script type="module">
-const SUPABASE_URL="https://mfdwridrrcalvjzmemtg.supabase.co";
-/* Keep your project's actual Supabase publishable/anon key here.
-   Never put a secret or service_role key in browser code. */
-const SUPABASE_PUBLISHABLE_KEY="sb_publishable_Umj49kpX234qQ0tc1f0QUw_MorI_PKS";
-const message=document.getElementById("auth-message");
-const status=document.getElementById("auth-status");
-const signupButton=document.getElementById("signup");
-const loginButton=document.getElementById("login");
-const resetButton=document.getElementById("reset-password");
-const logoutButton=document.getElementById("logout");
-function say(text,kind){message.textContent=text;message.className="message"+(kind?" "+kind:"")}
-function credentials(){return{email:document.getElementById("email").value.trim(),password:document.getElementById("password").value}}
-function showSession(session){if(session&&session.user){status.textContent="Signed in as "+session.user.email;logoutButton.classList.remove("hidden");logoutButton.disabled=false}else{status.textContent="Not signed in.";logoutButton.classList.add("hidden");logoutButton.disabled=true}}
-function setAuthButtons(enabled){signupButton.disabled=!enabled;loginButton.disabled=!enabled;resetButton.disabled=!enabled}
-async function start(){
- try{
-  if(!SUPABASE_PUBLISHABLE_KEY||SUPABASE_PUBLISHABLE_KEY==="PASTE_YOUR_SUPABASE_PUBLISHABLE_KEY"){throw new Error("Add your actual Supabase publishable key in this file before using account features.")}
-  const {createClient}=await import("https://esm.sh/@supabase/supabase-js@2");
-  const supabase=createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
-  const {data,error}=await supabase.auth.getSession();if(error)throw error;showSession(data.session);
-  supabase.auth.onAuthStateChange(function(event,session){showSession(session)});
-  setAuthButtons(true);say("Connected to Supabase. You can create an account or sign in.","success");
-  signupButton.addEventListener("click",async function(){
-   const {email,password}=credentials();if(!email)return say("Enter your email address.","error");if(password.length<8)return say("Use at least 8 characters for your password.","error");
-   signupButton.disabled=true;say("Creating your account…");
-   try{const {data,error}=await supabase.auth.signUp({email,password,options:{emailRedirectTo:window.location.origin+window.location.pathname}});if(error)throw error;if(data.session){showSession(data.session);say("Account created and signed in. Real rewards are not enabled yet.","success")}else{say("Registration submitted. Check your email for the verification link. If no email arrives, check Supabase email settings.","success")}}
-   catch(e){say(e.message||"Registration failed. Please try again.","error")}finally{signupButton.disabled=false}
-  });
-  loginButton.addEventListener("click",async function(){
-   const {email,password}=credentials();if(!email)return say("Enter your email address.","error");if(!password)return say("Enter your password.","error");loginButton.disabled=true;say("Signing in…");
-   try{const {data,error}=await supabase.auth.signInWithPassword({email,password});if(error)throw error;showSession(data.session);say("Sign-in successful. Real rewards and withdrawals are still not enabled.","success")}
-   catch(e){say(e.message||"Sign-in failed. Check your details.","error")}finally{loginButton.disabled=false}
-  });
-  resetButton.addEventListener("click",async function(){
-   const {email}=credentials();if(!email)return say("Enter your email address first.","error");resetButton.disabled=true;say("Requesting password reset…");
-   try{const {error}=await supabase.auth.resetPasswordForEmail(email,{redirectTo:window.location.origin+window.location.pathname});if(error)throw error;say("If the address is registered, password-reset instructions will be sent.","success")}
-   catch(e){say(e.message||"Could not request a password reset.","error")}finally{resetButton.disabled=false}
-  });
-  logoutButton.addEventListener("click",async function(){logoutButton.disabled=true;try{const {error}=await supabase.auth.signOut();if(error)throw error;showSession(null);say("You have signed out.","success")}catch(e){say(e.message||"Sign-out failed.","error")}finally{logoutButton.disabled=false}});
- }catch(e){setAuthButtons(false);say("Account connection failed: "+(e.message||"Check the Supabase URL/key and internet connection."),"error")}
-}
-start();
-</script>
+
 </body>
 </html>
